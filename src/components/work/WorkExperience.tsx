@@ -71,36 +71,54 @@ const WorkExperience = () => {
         {/* AWS 3-Tier Architecture Diagram */}
         <div className="aws-diagram p-8 rounded-lg bg-card border border-border">
           <p className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6 font-body">3-Tier AWS Architecture</p>
-          <svg viewBox="0 0 800 400" className="w-full" fill="none">
-            {/* Public Subnet */}
-            <rect x="50" y="30" width="700" height="100" rx="4" stroke="hsl(var(--primary))" strokeWidth="1.5" strokeDasharray="6 3" />
-            <text x="70" y="55" fill="hsl(var(--muted-foreground))" fontSize="11" fontFamily="Space Grotesk">PUBLIC SUBNET</text>
-            <rect x="280" y="60" width="240" height="50" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="320" y="90" fill="hsl(var(--foreground))" fontSize="13" fontFamily="Space Grotesk">Application Load Balancer</text>
+          <svg viewBox="0 0 800 520" className="w-full" fill="none">
+            {/* VPC boundary */}
+            <rect x="30" y="10" width="740" height="500" rx="6" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="8 4" opacity="0.4" />
+            <text x="50" y="35" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">VPC</text>
 
-            {/* Arrow */}
-            <line x1="400" y1="130" x2="400" y2="170" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <polygon points="395,168 400,178 405,168" fill="hsl(var(--primary))" />
+            {/* Internet / Users */}
+            <rect x="310" y="25" width="180" height="36" rx="18" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="360" y="48" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Internet / Users</text>
 
-            {/* Private Subnet - App */}
-            <rect x="50" y="180" width="700" height="100" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
-            <text x="70" y="205" fill="hsl(var(--muted-foreground))" fontSize="11" fontFamily="Space Grotesk">PRIVATE SUBNET — APPLICATION</text>
-            <rect x="150" y="215" width="130" height="45" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="175" y="243" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">EC2 / ECS</text>
-            <rect x="340" y="215" width="130" height="45" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="375" y="243" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">S3 / EFS</text>
-            <rect x="530" y="215" width="130" height="45" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="548" y="243" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Route 53 / VPC</text>
+            {/* Arrow: Internet → ALB */}
+            <line x1="400" y1="61" x2="400" y2="95" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,93 400,103 405,93" fill="hsl(var(--primary))" />
 
-            {/* Arrow */}
-            <line x1="400" y1="280" x2="400" y2="320" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <polygon points="395,318 400,328 405,318" fill="hsl(var(--primary))" />
+            {/* Public Subnet — Load Balancer */}
+            <rect x="60" y="100" width="680" height="80" rx="4" stroke="hsl(var(--primary))" strokeWidth="1.5" strokeDasharray="6 3" />
+            <text x="80" y="120" fill="hsl(var(--primary))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PUBLIC SUBNET</text>
+            <rect x="280" y="118" width="240" height="44" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="300" y="145" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Application Load Balancer</text>
 
-            {/* Private Subnet - Data */}
-            <rect x="50" y="330" width="700" height="60" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
-            <text x="70" y="355" fill="hsl(var(--muted-foreground))" fontSize="11" fontFamily="Space Grotesk">PRIVATE SUBNET — DATA</text>
-            <rect x="340" y="340" width="130" height="38" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="365" y="364" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Cost Explorer</text>
+            {/* Arrow: ALB → Frontend */}
+            <line x1="400" y1="180" x2="400" y2="215" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,213 400,223 405,213" fill="hsl(var(--primary))" />
+
+            {/* Private Subnet — Frontend */}
+            <rect x="60" y="220" width="680" height="80" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="80" y="240" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PRIVATE SUBNET — FRONTEND</text>
+            <rect x="300" y="248" width="200" height="40" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="340" y="273" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Frontend (EC2)</text>
+
+            {/* Arrow: Frontend → Backend */}
+            <line x1="400" y1="300" x2="400" y2="335" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,333 400,343 405,333" fill="hsl(var(--primary))" />
+
+            {/* Private Subnet — Backend */}
+            <rect x="60" y="340" width="680" height="80" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="80" y="360" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PRIVATE SUBNET — BACKEND</text>
+            <rect x="300" y="368" width="200" height="40" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="335" y="393" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Backend (EC2)</text>
+
+            {/* Arrow: Backend → Database */}
+            <line x1="400" y1="420" x2="400" y2="450" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,448 400,458 405,448" fill="hsl(var(--primary))" />
+
+            {/* Private Subnet — Database */}
+            <rect x="60" y="455" width="680" height="50" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="80" y="475" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PRIVATE SUBNET — DATABASE</text>
+            <rect x="310" y="464" width="180" height="34" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="355" y="486" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">RDS / DB</text>
           </svg>
         </div>
       </div>
