@@ -51,7 +51,7 @@ const ModeToggle = () => {
             : 'bg-primary text-primary-foreground font-vibe-display border-2 border-foreground hover:scale-105'
         } ${isTransitioning ? 'opacity-50 pointer-events-none' : ''}`}
       >
-        {mode === 'work' ? 'Vibe Mode 🍵' : 'Work Mode 💼'}
+        {mode === 'work' ? 'Unwind 🍵' : 'Deploy 💼'}
       </button>
 
       {showOverlay && (
