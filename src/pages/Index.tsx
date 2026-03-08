@@ -17,9 +17,15 @@ import VibeChai from '@/components/vibe/VibeChai';
 import VibePlaylist from '@/components/vibe/VibePlaylist';
 import VibePeople from '@/components/vibe/VibePeople';
 import VibeTwoAM from '@/components/vibe/VibeTwoAM';
+import { useLenis } from '@/hooks/useLenis';
+import { useMagneticEffect } from '@/hooks/useMagneticEffect';
+import { Link } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 
 const SiteContent = () => {
   const { mode } = useMode();
+  useLenis();
+  useMagneticEffect();
 
   useEffect(() => {
     if (mode === 'vibe') {
@@ -34,6 +40,15 @@ const SiteContent = () => {
       <ModeToggle />
       <CustomCursor />
       <CommandPalette />
+
+      {/* Showcase link */}
+      <Link
+        to="/showcase"
+        className="magnetic-btn fixed bottom-6 right-6 z-50 glass-card px-4 py-2 flex items-center gap-2 group"
+      >
+        <Sparkles size={14} className="text-primary" />
+        <span className="font-mono text-xs text-muted-foreground group-hover:text-foreground transition-colors">Showcase</span>
+      </Link>
 
       {mode === 'work' ? (
         <main>
