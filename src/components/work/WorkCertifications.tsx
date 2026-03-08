@@ -5,43 +5,34 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const certs = [
-  { title: 'The Bits and Bytes of Computer Networking', issuer: 'Google' },
-  { title: 'AWS Academy Cloud Foundations', issuer: 'AWS' },
-  { title: 'Python for Everybody', issuer: 'University of Michigan' },
+  { title: 'The Bits and Bytes of Computer Networking', issuer: 'Google', icon: '🌐' },
+  { title: 'AWS Academy Cloud Foundations', issuer: 'AWS', icon: '☁️' },
+  { title: 'Python for Everybody', issuer: 'University of Michigan', icon: '🐍' },
 ];
 
 const WorkCertifications = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.cert-item', {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
-        x: -40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: 'power3.out',
+      gsap.from('.cert-card', {
+        scrollTrigger: { trigger: ref.current, start: 'top 70%' },
+        y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
       });
-    }, sectionRef);
+    }, ref);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 max-w-5xl mx-auto">
-      <div className="mb-16">
-        <span className="text-[11px] tracking-[0.5em] uppercase text-muted-foreground font-body">Certifications</span>
-        <div className="w-12 h-px bg-primary mt-3" />
-      </div>
-
-      <div className="space-y-8">
+    <section ref={ref} id="certifications" className="px-4 md:px-6 pb-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {certs.map((cert, i) => (
-          <div key={i} className="cert-item flex items-baseline gap-6 border-b border-border pb-6">
-            <span className="text-xs text-muted-foreground font-body w-6">0{i + 1}</span>
-            <div>
-              <h4 className="font-display text-xl md:text-2xl text-foreground">{cert.title}</h4>
-              <p className="text-sm text-primary font-body mt-1">{cert.issuer}</p>
-            </div>
+          <div key={i} className="cert-card glass-card p-6 group">
+            <span className="text-2xl mb-4 block">{cert.icon}</span>
+            <h4 className="font-display text-base font-bold text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
+              {cert.title}
+            </h4>
+            <p className="font-mono text-xs text-primary">{cert.issuer}</p>
           </div>
         ))}
       </div>
