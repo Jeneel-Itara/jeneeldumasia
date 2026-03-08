@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useModifierKey } from '@/hooks/useOS';
 import { Github, Linkedin, Mail, MapPin, ChevronDown } from 'lucide-react';
 
 const WorkHero = () => {
