@@ -69,7 +69,7 @@ const WorkHero = () => {
         </div>
 
         <div className="bento-card glass-card md:col-span-4 p-4 flex items-center justify-center gap-2 text-muted-foreground">
-          <kbd className="font-mono text-xs px-1.5 py-0.5 bg-secondary rounded border border-border">⌘K</kbd>
+          <kbd className="font-mono text-xs px-1.5 py-0.5 bg-secondary rounded border border-border">{modKey}+K</kbd>
           <span className="font-mono text-xs">to navigate</span>
           <ChevronDown size={12} className="animate-bounce" />
         </div>
