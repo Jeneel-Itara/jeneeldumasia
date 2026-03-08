@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 
 const ModeToggle = () => {
   const { mode, toggleMode, toggleRef, isTransitioning } = useMode();
+  const modKey = useModifierKey();
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showOverlay, setShowOverlay] = useState(false);
 
