@@ -38,15 +38,6 @@ const SiteContent = () => {
       <CustomCursor />
       <CommandPalette />
 
-      {/* Showcase link */}
-      <Link
-        to="/showcase"
-        className="magnetic-btn fixed bottom-6 right-6 z-50 glass-card px-4 py-2 flex items-center gap-2 group"
-      >
-        <Sparkles size={14} className="text-primary" />
-        <span className="font-mono text-xs text-muted-foreground group-hover:text-foreground transition-colors">Showcase</span>
-      </Link>
-
       {mode === 'work' ? (
         <main>
           <WorkHero />
