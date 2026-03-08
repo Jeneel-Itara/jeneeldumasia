@@ -5,6 +5,7 @@ import { Github, Linkedin, Mail, MapPin, ChevronDown } from 'lucide-react';
 
 const WorkHero = () => {
   const ref = useRef<HTMLElement>(null);
+  const modKey = useModifierKey();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
