@@ -1,9 +1,11 @@
 import { useMode } from '@/contexts/ModeContext';
+import { useModifierKey } from '@/hooks/useOS';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 const ModeToggle = () => {
   const { mode, toggleMode, toggleRef, isTransitioning } = useMode();
+  const modKey = useModifierKey();
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showOverlay, setShowOverlay] = useState(false);
 
@@ -59,9 +61,9 @@ const ModeToggle = () => {
           </span>
         </button>
 
-        {/* Cmd+K hint */}
+        {/* Keyboard shortcut hint */}
         <div className="hidden md:flex items-center ml-3 px-2 py-1 rounded-md bg-secondary/50 border border-border/50">
-          <kbd className="font-mono text-[10px] text-muted-foreground">⌘K</kbd>
+          <kbd className="font-mono text-[10px] text-muted-foreground">{modKey}+K</kbd>
         </div>
       </div>
 
