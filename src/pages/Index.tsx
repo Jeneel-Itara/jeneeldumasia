@@ -3,6 +3,7 @@ import { ModeProvider, useMode } from '@/contexts/ModeContext';
 import LoadingScreen from '@/components/LoadingScreen';
 import ModeToggle from '@/components/ModeToggle';
 import CustomCursor from '@/components/CustomCursor';
+import CommandPalette from '@/components/CommandPalette';
 import WorkHero from '@/components/work/WorkHero';
 import WorkAbout from '@/components/work/WorkAbout';
 import WorkSkills from '@/components/work/WorkSkills';
@@ -32,6 +33,7 @@ const SiteContent = () => {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
       <ModeToggle />
       <CustomCursor />
+      <CommandPalette />
 
       {mode === 'work' ? (
         <main>
@@ -44,7 +46,7 @@ const SiteContent = () => {
           <WorkContact />
         </main>
       ) : (
-        <main className="font-vibe-display">
+        <main className="font-vibe-display scanlines grain">
           <VibeHero />
           <VibeGamer />
           <VibeChai />

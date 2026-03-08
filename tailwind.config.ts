@@ -14,9 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Playfair Display", "serif"],
+        display: ["Syne", "sans-serif"],
         body: ["Space Grotesk", "sans-serif"],
-        "vibe-display": ["Baloo 2", "cursive"],
+        mono: ["JetBrains Mono", "monospace"],
+        "vibe-display": ["VT323", "monospace"],
         "vibe-hand": ["Caveat", "cursive"],
       },
       colors: {
@@ -75,20 +76,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
