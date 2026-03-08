@@ -19,9 +19,6 @@ import VibePeople from '@/components/vibe/VibePeople';
 import VibeTwoAM from '@/components/vibe/VibeTwoAM';
 import { useLenis } from '@/hooks/useLenis';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
-import { Link } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
-
 const SiteContent = () => {
   const { mode } = useMode();
   useLenis();
