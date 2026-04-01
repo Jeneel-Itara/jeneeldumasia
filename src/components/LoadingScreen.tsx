@@ -47,17 +47,17 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
       className="fixed inset-0 z-[9999] flex items-center justify-center"
       style={{ backgroundColor: '#0a0a0a' }}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <span
-          className="text-[#555] text-5xl md:text-7xl"
-          style={{ lineHeight: 1 }}
+          className="text-3xl md:text-5xl"
+          style={{ color: '#555', lineHeight: 1 }}
         >
           ·
         </span>
         <span
           ref={textRef}
-          className="font-extralight italic text-5xl md:text-7xl tracking-wide"
-          style={{ color: '#d0d0d0' }}
+          className="text-3xl md:text-5xl tracking-wide"
+          style={{ color: '#b0b0b0', fontFamily: 'Georgia, "Times New Roman", serif', fontStyle: 'italic', fontWeight: 300 }}
         >
           {greetings[index]}
         </span>
