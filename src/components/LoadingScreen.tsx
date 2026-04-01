@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-const greetings = ['HELLO', 'HOLA', 'CIAO', 'NAMASTE', 'BONJOUR', 'SALUT'];
+const greetings = ['HELLO', 'HOLA', 'CIAO', 'नमस्ते', 'BONJOUR', 'SALUT'];
 
 const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   const screenRef = useRef<HTMLDivElement>(null);
@@ -56,8 +56,8 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         </span>
         <span
           ref={textRef}
-          className="font-light text-5xl md:text-7xl tracking-wide"
-          style={{ color: '#e0e0e0' }}
+          className="font-extralight italic text-5xl md:text-7xl tracking-wide"
+          style={{ color: '#d0d0d0' }}
         >
           {greetings[index]}
         </span>
