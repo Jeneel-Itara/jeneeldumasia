@@ -65,8 +65,8 @@ const WorkHero = () => {
       </div>
 
       <div className="relative z-10 text-center">
-        <div className="overflow-hidden mb-2">
-          <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-foreground leading-none">
+        <div className="overflow-visible mb-2">
+          <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-foreground" style={{ lineHeight: 1.1 }}>
             JENEEL
           </h1>
         </div>
