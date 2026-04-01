@@ -1,11 +1,9 @@
 import { useMode } from '@/contexts/ModeContext';
-import { useModifierKey } from '@/hooks/useOS';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 const ModeToggle = () => {
   const { mode, toggleMode, toggleRef, isTransitioning } = useMode();
-  const modKey = useModifierKey();
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showOverlay, setShowOverlay] = useState(false);
 
@@ -22,12 +20,15 @@ const ModeToggle = () => {
 
     setShowOverlay(true);
     const el = overlayRef.current;
-
+    
+    // The overlay takes the NEW mode's color
+    const nextMode = mode; // mode has already switched by the time this runs in the second half
+    
     gsap.set(el, {
       clipPath: `circle(0px at ${cx}px ${cy}px)`,
       opacity: 1,
     });
-
+    
     gsap.to(el, {
       clipPath: `circle(${maxRadius}px at ${cx}px ${cy}px)`,
       duration: 0.8,
@@ -40,41 +41,27 @@ const ModeToggle = () => {
 
   return (
     <>
-      {/* Pill toggle */}
-      <div className="fixed top-5 right-5 z-[9990] flex items-center">
-        <button
-          ref={toggleRef}
-          onClick={toggleMode}
-          disabled={isTransitioning}
-          className={`relative flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider transition-all duration-300 border ${
-            mode === 'work'
-              ? 'bg-secondary/80 backdrop-blur-md text-foreground border-border hover:border-primary/50'
-              : 'bg-card/80 backdrop-blur-md text-foreground border-border hover:border-primary/50'
-          } ${isTransitioning ? 'opacity-50 pointer-events-none' : ''}`}
-        >
-          <span className={`transition-colors ${mode === 'work' ? 'text-primary' : 'text-muted-foreground'}`}>
-            Deploy
-          </span>
-          <span className="w-px h-3 bg-border" />
-          <span className={`transition-colors ${mode === 'vibe' ? 'text-primary' : 'text-muted-foreground'}`}>
-            Unwind
-          </span>
-        </button>
-
-        {/* Keyboard shortcut hint */}
-        <div className="hidden md:flex items-center ml-3 px-2 py-1 rounded-md bg-secondary/50 border border-border/50">
-          <kbd className="font-mono text-[10px] text-muted-foreground">{modKey}+K</kbd>
-        </div>
-      </div>
+      <button
+        ref={toggleRef}
+        onClick={toggleMode}
+        disabled={isTransitioning}
+        className={`fixed top-6 right-6 z-[9990] px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+          mode === 'work'
+            ? 'bg-secondary text-foreground border border-border font-body hover:bg-primary hover:text-primary-foreground'
+            : 'bg-primary text-primary-foreground font-vibe-display border-2 border-foreground hover:scale-105'
+        } ${isTransitioning ? 'opacity-50 pointer-events-none' : ''}`}
+      >
+        {mode === 'work' ? 'Unwind 🍵' : 'Deploy 💼'}
+      </button>
 
       {showOverlay && (
         <div
           ref={overlayRef}
           className="mode-transition-overlay"
           style={{
-            backgroundColor: mode === 'vibe'
-              ? 'hsl(35 30% 8%)'
-              : 'hsl(225 25% 5%)',
+            backgroundColor: mode === 'vibe' 
+              ? 'hsl(40 40% 95%)' 
+              : 'hsl(220 20% 6%)',
           }}
         />
       )}

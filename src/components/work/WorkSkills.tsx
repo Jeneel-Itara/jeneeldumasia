@@ -5,48 +5,72 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const skillGroups = [
-  { label: 'Build', icon: '⚡', skills: ['Python', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Java'] },
-  { label: 'Deploy', icon: '🚀', skills: ['AWS (EC2, ECS, S3, VPC, Route 53, EFS)', 'GCP', 'Linux', 'Git & GitHub'] },
-  { label: 'Analyze', icon: '📊', skills: ['OpenCV', 'NumPy', 'SciPy', 'MongoDB'] },
-  { label: 'Create', icon: '🔧', skills: ['NodeJS', 'Express', 'Android SDK', 'Raspberry Pi'] },
+  { label: 'Build', skills: ['Python', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Java'] },
+  { label: 'Deploy', skills: ['AWS (EC2, ECS, S3, VPC, Route 53, EFS)', 'GCP', 'Linux', 'Git & GitHub'] },
+  { label: 'Analyze', skills: ['OpenCV', 'NumPy', 'SciPy', 'MongoDB'] },
+  { label: 'Create', skills: ['NodeJS', 'Express', 'Android SDK', 'Raspberry Pi'] },
 ];
 
 const WorkSkills = () => {
-  const ref = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeGroup, setActiveGroup] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.skill-card', {
-        scrollTrigger: { trigger: ref.current, start: 'top 65%' },
-        y: 40, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out',
+      gsap.from('.skills-section', {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 65%',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
       });
-    }, ref);
+    }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={ref} id="skills" className="px-4 md:px-6 pb-6 max-w-6xl mx-auto">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {skillGroups.map((group, i) => (
-          <button
-            key={group.label}
-            onClick={() => setActive(i)}
-            className={`skill-card glass-card p-5 text-left transition-all duration-300 ${
-              active === i ? 'glow-primary border-primary/30' : ''
-            }`}
-          >
-            <span className="text-2xl mb-3 block">{group.icon}</span>
-            <p className={`font-display text-lg font-bold mb-3 transition-colors ${active === i ? 'text-primary' : 'text-foreground'}`}>
+    <section ref={sectionRef} className="py-32 px-6 max-w-5xl mx-auto">
+      <div className="mb-16">
+        <span className="text-[11px] tracking-[0.5em] uppercase text-muted-foreground font-body">Skills</span>
+        <div className="w-12 h-px bg-primary mt-3" />
+      </div>
+
+      <div className="skills-section grid md:grid-cols-[200px_1fr] gap-12">
+        {/* Category tabs */}
+        <div className="flex md:flex-col gap-4">
+          {skillGroups.map((group, i) => (
+            <button
+              key={group.label}
+              onClick={() => setActiveGroup(i)}
+              className={`text-left font-display text-lg md:text-xl transition-all duration-300 magnetic-btn ${
+                activeGroup === i
+                  ? 'text-primary translate-x-2'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {activeGroup === i && <span className="text-primary mr-2">—</span>}
               {group.label}
-            </p>
-            <div className={`space-y-1 transition-all duration-300 ${active === i ? 'opacity-100 max-h-[300px]' : 'opacity-40 max-h-[80px] overflow-hidden'}`}>
-              {group.skills.map(skill => (
-                <p key={skill} className="font-mono text-xs text-muted-foreground">{skill}</p>
-              ))}
-            </div>
-          </button>
-        ))}
+            </button>
+          ))}
+        </div>
+
+        {/* Skills display */}
+        <div className="min-h-[200px]">
+          <div className="flex flex-wrap gap-x-8 gap-y-4">
+            {skillGroups[activeGroup].skills.map((skill, i) => (
+              <span
+                key={skill}
+                className="font-body text-lg md:text-2xl text-foreground"
+                style={{ animationDelay: `${i * 0.05}s` }}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

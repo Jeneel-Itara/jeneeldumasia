@@ -5,92 +5,120 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const WorkExperience = () => {
-  const ref = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.exp-card', {
-        scrollTrigger: { trigger: ref.current, start: 'top 60%' },
-        y: 50, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+      gsap.from('.exp-content', {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 60%',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
       });
-    }, ref);
+
+      gsap.from('.aws-diagram', {
+        scrollTrigger: {
+          trigger: '.aws-diagram',
+          start: 'top 75%',
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+      });
+    }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={ref} id="experience" className="px-4 md:px-6 pb-6 max-w-6xl mx-auto">
-      <div className="grid md:grid-cols-12 gap-3">
-        {/* Role card */}
-        <div className="exp-card glass-card md:col-span-5 p-8">
-          <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-[0.4em] mb-6">// experience</p>
-          <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground">Technical Intern</h3>
-          <p className="font-display text-xl text-primary mt-2">IAMOPS</p>
-          <p className="font-mono text-xs text-muted-foreground mt-2">Jan 2026 – Present · Surat, Gujarat</p>
-          <p className="text-muted-foreground font-body text-sm mt-6 leading-relaxed">
-            IAMOPS is a full DevOps company. Part of the NOC (Network Operations Center) team.
+    <section ref={sectionRef} className="py-32 px-6 max-w-5xl mx-auto">
+      <div className="mb-16">
+        <span className="text-[11px] tracking-[0.5em] uppercase text-muted-foreground font-body">Experience</span>
+        <div className="w-12 h-px bg-primary mt-3" />
+      </div>
+
+      <div className="exp-content">
+        <div className="mb-6">
+          <h3 className="font-display text-3xl md:text-5xl font-bold text-foreground">Technical Intern</h3>
+          <p className="font-display text-xl md:text-2xl text-primary mt-2">IAMOPS</p>
+          <p className="text-sm text-muted-foreground font-body tracking-wider mt-2">
+            January 2026 – Present · Surat, Gujarat
           </p>
-          <ul className="mt-6 space-y-3">
-            {[
-              'Real client infrastructure & system monitoring',
-              'Deployed secure 3-tier architecture on AWS',
-              'EC2, ECS, S3, VPC, Route 53, EFS, Cost Explorer',
-              'Cloud networking, HA design, DevOps tooling',
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2 font-body text-xs text-foreground/80">
-                <span className="text-primary mt-0.5 text-[10px]">▸</span>
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
 
-        {/* Architecture diagram card */}
-        <div className="exp-card glass-card md:col-span-7 p-6">
-          <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-[0.4em] mb-4">3-Tier AWS Architecture</p>
-          <svg viewBox="0 0 800 480" className="w-full" fill="none">
-            {/* VPC */}
-            <rect x="30" y="10" width="740" height="460" rx="8" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 4" opacity="0.3" />
-            <text x="50" y="32" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="JetBrains Mono" letterSpacing="3" opacity="0.6">VPC</text>
+        <p className="text-muted-foreground font-body text-base md:text-lg mb-8 max-w-3xl">
+          IAMOPS is a full DevOps company. Jeneel works as part of the NOC (Network Operations Center) team.
+        </p>
 
-            {/* Internet */}
-            <rect x="310" y="22" width="180" height="32" rx="16" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="358" y="43" fill="hsl(var(--foreground))" fontSize="11" fontFamily="JetBrains Mono">Internet</text>
+        <ul className="space-y-4 mb-16">
+          {[
+            'Gaining hands-on exposure to real client infrastructure and system monitoring',
+            'Deployed a secure 3-tier application architecture on AWS — app components in private subnets, Application Load Balancer in public subnet',
+            'Worked with EC2, ECS, S3, VPC, Route 53, EFS, and AWS Cost Explorer',
+            'Hands-on experience with cloud networking, high availability design, cost monitoring, and DevOps tooling in production',
+          ].map((item, i) => (
+            <li key={i} className="flex items-start gap-3 text-foreground font-body text-sm md:text-base">
+              <span className="text-primary mt-1.5 text-xs">◆</span>
+              {item}
+            </li>
+          ))}
+        </ul>
 
-            <line x1="400" y1="54" x2="400" y2="88" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <polygon points="396,86 400,94 404,86" fill="hsl(var(--primary))" />
+        {/* AWS 3-Tier Architecture Diagram */}
+        <div className="aws-diagram p-8 rounded-lg bg-card border border-border">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6 font-body">3-Tier AWS Architecture</p>
+          <svg viewBox="0 0 800 520" className="w-full" fill="none">
+            {/* VPC boundary */}
+            <rect x="30" y="10" width="740" height="500" rx="6" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="8 4" opacity="0.4" />
+            <text x="50" y="35" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">VPC</text>
 
-            {/* Public Subnet */}
-            <rect x="60" y="92" width="680" height="70" rx="6" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
-            <text x="78" y="110" fill="hsl(var(--primary))" fontSize="9" fontFamily="JetBrains Mono" letterSpacing="2" opacity="0.7">PUBLIC</text>
-            <rect x="280" y="108" width="240" height="38" rx="6" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="320" y="132" fill="hsl(var(--foreground))" fontSize="11" fontFamily="JetBrains Mono">Load Balancer (ALB)</text>
+            {/* Internet / Users */}
+            <rect x="310" y="25" width="180" height="36" rx="18" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="360" y="48" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Internet / Users</text>
 
-            <line x1="400" y1="162" x2="400" y2="195" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <polygon points="396,193 400,201 404,193" fill="hsl(var(--primary))" />
+            {/* Arrow: Internet → ALB */}
+            <line x1="400" y1="61" x2="400" y2="95" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,93 400,103 405,93" fill="hsl(var(--primary))" />
 
-            {/* Private Frontend */}
-            <rect x="60" y="198" width="680" height="70" rx="6" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
-            <text x="78" y="216" fill="hsl(var(--muted-foreground))" fontSize="9" fontFamily="JetBrains Mono" letterSpacing="2" opacity="0.6">PRIVATE — FRONTEND</text>
-            <rect x="300" y="218" width="200" height="36" rx="6" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="340" y="241" fill="hsl(var(--foreground))" fontSize="11" fontFamily="JetBrains Mono">Frontend (EC2)</text>
+            {/* Public Subnet — Load Balancer */}
+            <rect x="60" y="100" width="680" height="80" rx="4" stroke="hsl(var(--primary))" strokeWidth="1.5" strokeDasharray="6 3" />
+            <text x="80" y="120" fill="hsl(var(--primary))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PUBLIC SUBNET</text>
+            <rect x="280" y="118" width="240" height="44" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="300" y="145" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Application Load Balancer</text>
 
-            <line x1="400" y1="268" x2="400" y2="298" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <polygon points="396,296 400,304 404,296" fill="hsl(var(--primary))" />
+            {/* Arrow: ALB → Frontend */}
+            <line x1="400" y1="180" x2="400" y2="215" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,213 400,223 405,213" fill="hsl(var(--primary))" />
 
-            {/* Private Backend */}
-            <rect x="60" y="302" width="680" height="70" rx="6" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
-            <text x="78" y="320" fill="hsl(var(--muted-foreground))" fontSize="9" fontFamily="JetBrains Mono" letterSpacing="2" opacity="0.6">PRIVATE — BACKEND</text>
-            <rect x="300" y="322" width="200" height="36" rx="6" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="338" y="345" fill="hsl(var(--foreground))" fontSize="11" fontFamily="JetBrains Mono">Backend (EC2)</text>
+            {/* Private Subnet — Frontend */}
+            <rect x="60" y="220" width="680" height="80" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="80" y="240" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PRIVATE SUBNET — FRONTEND</text>
+            <rect x="300" y="248" width="200" height="40" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="340" y="273" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Frontend (EC2)</text>
 
-            <line x1="400" y1="372" x2="400" y2="400" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-            <polygon points="396,398 400,406 404,398" fill="hsl(var(--primary))" />
+            {/* Arrow: Frontend → Backend */}
+            <line x1="400" y1="300" x2="400" y2="335" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,333 400,343 405,333" fill="hsl(var(--primary))" />
 
-            {/* Private Database */}
-            <rect x="60" y="404" width="680" height="54" rx="6" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
-            <text x="78" y="422" fill="hsl(var(--muted-foreground))" fontSize="9" fontFamily="JetBrains Mono" letterSpacing="2" opacity="0.6">PRIVATE — DATABASE</text>
-            <rect x="310" y="418" width="180" height="30" rx="6" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
-            <text x="362" y="438" fill="hsl(var(--foreground))" fontSize="11" fontFamily="JetBrains Mono">RDS / DB</text>
+            {/* Private Subnet — Backend */}
+            <rect x="60" y="340" width="680" height="80" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="80" y="360" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PRIVATE SUBNET — BACKEND</text>
+            <rect x="300" y="368" width="200" height="40" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="335" y="393" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">Backend (EC2)</text>
+
+            {/* Arrow: Backend → Database */}
+            <line x1="400" y1="420" x2="400" y2="450" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+            <polygon points="395,448 400,458 405,448" fill="hsl(var(--primary))" />
+
+            {/* Private Subnet — Database */}
+            <rect x="60" y="455" width="680" height="50" rx="4" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="80" y="475" fill="hsl(var(--muted-foreground))" fontSize="10" fontFamily="Space Grotesk" letterSpacing="3">PRIVATE SUBNET — DATABASE</text>
+            <rect x="310" y="464" width="180" height="34" rx="4" fill="hsl(var(--secondary))" stroke="hsl(var(--border))" strokeWidth="1" />
+            <text x="355" y="486" fill="hsl(var(--foreground))" fontSize="12" fontFamily="Space Grotesk">RDS / DB</text>
           </svg>
         </div>
       </div>

@@ -3,7 +3,6 @@ import { ModeProvider, useMode } from '@/contexts/ModeContext';
 import LoadingScreen from '@/components/LoadingScreen';
 import ModeToggle from '@/components/ModeToggle';
 import CustomCursor from '@/components/CustomCursor';
-import CommandPalette from '@/components/CommandPalette';
 import WorkHero from '@/components/work/WorkHero';
 import WorkAbout from '@/components/work/WorkAbout';
 import WorkSkills from '@/components/work/WorkSkills';
@@ -17,12 +16,9 @@ import VibeChai from '@/components/vibe/VibeChai';
 import VibePlaylist from '@/components/vibe/VibePlaylist';
 import VibePeople from '@/components/vibe/VibePeople';
 import VibeTwoAM from '@/components/vibe/VibeTwoAM';
-import { useLenis } from '@/hooks/useLenis';
-import { useMagneticEffect } from '@/hooks/useMagneticEffect';
+
 const SiteContent = () => {
   const { mode } = useMode();
-  useLenis();
-  useMagneticEffect();
 
   useEffect(() => {
     if (mode === 'vibe') {
@@ -36,7 +32,6 @@ const SiteContent = () => {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
       <ModeToggle />
       <CustomCursor />
-      <CommandPalette />
 
       {mode === 'work' ? (
         <main>
@@ -49,7 +44,7 @@ const SiteContent = () => {
           <WorkContact />
         </main>
       ) : (
-        <main className="font-vibe-display scanlines grain">
+        <main className="font-vibe-display">
           <VibeHero />
           <VibeGamer />
           <VibeChai />
