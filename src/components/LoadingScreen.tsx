@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-const greetings = ['HELLO', 'HOLA', 'CIAO', 'NAMASTE', 'BONJOUR', 'SALUT'];
+const greetings = ['HELLO', 'HOLA', 'CIAO', 'नमस्ते', 'BONJOUR', 'SALUT'];
 
 const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   const screenRef = useRef<HTMLDivElement>(null);
