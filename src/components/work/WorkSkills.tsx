@@ -5,10 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const skillGroups = [
-  { label: 'Build', skills: ['Python', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Java'] },
-  { label: 'Deploy', skills: ['AWS (EC2, ECS, S3, VPC, Route 53, EFS)', 'GCP', 'Linux', 'Git & GitHub'] },
+  { label: 'Build', skills: ['Python', 'JavaScript', 'SQL', 'HTML', 'CSS'] },
+  { label: 'Deploy', skills: ['AWS', 'GCP', 'Linux', 'Git & GitHub'] },
   { label: 'Analyze', skills: ['OpenCV', 'NumPy', 'SciPy', 'MongoDB'] },
-  { label: 'Create', skills: ['NodeJS', 'Express', 'Android SDK', 'Raspberry Pi'] },
+  { label: 'Create', skills: ['NodeJS', 'Raspberry Pi'] },
 ];
 
 const WorkSkills = () => {
