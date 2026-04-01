@@ -43,23 +43,22 @@ const WorkExperience = () => {
 
       <div className="exp-content">
         <div className="mb-6">
-          <h3 className="font-display text-3xl md:text-5xl font-bold text-foreground">Technical Intern</h3>
+          <h3 className="font-display text-3xl md:text-5xl font-bold text-foreground">Cloud & DevOps Intern</h3>
           <p className="font-display text-xl md:text-2xl text-primary mt-2">IAMOPS</p>
           <p className="text-sm text-muted-foreground font-body tracking-wider mt-2">
-            January 2026 – Present · Surat, Gujarat
+            Jan 2026 – Present · Surat, Gujarat
           </p>
         </div>
 
-        <p className="text-muted-foreground font-body text-base md:text-lg mb-8 max-w-3xl">
-          IAMOPS is a full DevOps company. Jeneel works as part of the NOC (Network Operations Center) team.
-        </p>
-
         <ul className="space-y-4 mb-16">
           {[
-            'Gaining hands-on exposure to real client infrastructure and system monitoring',
-            'Deployed a secure 3-tier application architecture on AWS — app components in private subnets, Application Load Balancer in public subnet',
-            'Worked with EC2, ECS, S3, VPC, Route 53, EFS, and AWS Cost Explorer',
-            'Hands-on experience with cloud networking, high availability design, cost monitoring, and DevOps tooling in production',
+            'Built a non-production 3-tier cloud architecture, implementing network isolation and load balancing to simulate a high-availability system design.',
+            'Currently deep diving into AWS services, gaining hands-on experience with cloud infrastructure, networking, and cost optimization.',
+            'Designed a multi-location network architecture (2 branches + HQ) as part of a structured task with IP planning and subnet segmentation, and performed DevOps-focused infrastructure analysis on real-world companies to identify scalability challenges and map potential deployment patterns.',
+            'Ranked among Top 10 interns (out of batch) and selected to transition into NOC operations.',
+            'Acted as a Secondary responder in incident management, supporting real-time monitoring, alert triaging, and escalation workflows in production environments.',
+            'Contributed to shift handovers and operational continuity, ensuring clear communication of system status, incidents, and ongoing actions.',
+            'Gained exposure to production systems, observability practices, and reliability engineering workflows.',
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-foreground font-body text-sm md:text-base">
               <span className="text-primary mt-1.5 text-xs">◆</span>
